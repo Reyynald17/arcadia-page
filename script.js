@@ -5,11 +5,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const navLinks = document.querySelectorAll('.main-nav a, .secondary-cta-btn');
     const joinCta = document.querySelector('.cta-button');
     const registerCta = document.querySelector('.main-cta-btn');
-    const hubCta = document.querySelector('.cta-hub');
+    const hubCta = document.querySelector('.cta-hub'); 
 
     navLinks.forEach(link => {
         link.addEventListener('click', function(e) {
-           
             if (this.classList.contains('cta-button') || this.classList.contains('main-cta-btn') || this.classList.contains('cta-hub')) {
                 return;
             }
@@ -19,9 +18,11 @@ document.addEventListener('DOMContentLoaded', () => {
             let targetId = '';
             if (this.textContent.includes('Home')) {
                 targetId = '.hero-section';
+            } else if (this.textContent.includes('Tentang Arcadia')) {
+                targetId = '#about';
             } else if (this.textContent.includes('Lore')) {
                 targetId = '.lore-section';
-            } else if (this.textContent.includes('Peta')) {
+            } else if (this.textContent.includes('Peta')) { 
                 targetId = '.map-section';
             }
 
@@ -45,7 +46,6 @@ document.addEventListener('DOMContentLoaded', () => {
             window.open(REGISTRATION_URL, '_blank');
         });
     }
-
 
     if (hubCta) {
         hubCta.addEventListener('click', (e) => {
