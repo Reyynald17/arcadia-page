@@ -109,40 +109,51 @@ a {
 
 .main-nav {
     display: flex;
-    gap: 18px;
+    gap: 30px; 
 }
 
 .nav-button {
-	padding: 10px 20px;
-    border-radius: 8px;
+    padding: 10px 0; 
+    background-color: transparent; 
+    color: var(--color-text-light);
     font-family: var(--font-headline);
     font-weight: 500;
-    transition: background-color 0.3s;
-    background-color: #333;
-    color: var(--color-text-light);
+    font-size: 1.1em;
+    text-transform: uppercase; 
+
+    border-bottom: 2px solid transparent;
+    transition: all 0.3s ease-in-out; 
 }
 
 .nav-button:hover {
-    background-color: #555;
+    color: var(--color-cta-main); 
+    border-bottom: 2px solid var(--color-cta-main); 
+    background-color: transparent; 
+}
+.nav-button.active {
+    color: var(--color-cta-main); 
+    border-bottom: 2px solid var(--color-cta-main); 
 }
 
 .cta-button {
-    background-color: var(--color-cta-main);
     color: var(--color-text-light);
 }
 
 .cta-button:hover {
-    background-color: #4A85C1;
+    color: var(--color-cta-main); 
+    border-bottom: 2px solid var(--color-cta-main); 
+    background-color: transparent; 
 }
+
 .cta-hub {
-    background-color: #333;
     color: var(--color-text-light);
 }
 
 .cta-hub:hover {
-    background-color: #555;
+    color: var(--color-cta-main); 
+    border-bottom: 2px solid var(--color-cta-main); 
+    background-color: transparent; 
 }
-
 
 @keyframes fadeIn {
     to { opacity: 1; }
@@ -260,7 +271,7 @@ a {
     object-fit: cover;
 }
 
-/* --- 4. CONTENT SECTIONS (LORE & PETA) --- */
+/* --- 4. CONTENT SECTIONS (LORE, PETA, CREDITS) --- */
 .content-section {
     min-height: 80vh;
     padding: 100px 5%;
@@ -281,23 +292,142 @@ a {
     background-color: #0A0A0A;
 }
 
+/* Gaya Bagian Peta */
 .map-section {
     background-color: #151515;
+    padding-bottom: 100px; 
 }
 
 .map-container {
     max-width: 1000px;
-    width: 100%;
+    width: 90%; 
     margin-bottom: 30px;
 }
 
 .full-map-image {
     width: 100%;
-    height: auto;
+    height: auto; 
+    display: block;
     border: 5px solid rgba(255, 255, 255, 0.1);
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
 }
 
+/* -------------------------------------- */
+/* --- GAYA DAN ANIMASI KOMPLEKS CREDITS --- */
+/* -------------------------------------- */
+
+/* Gaya Dasar Credits */
+.credits-section {
+    min-height: 40vh;
+    background-color: #0A0A0A;
+    padding-bottom: 50px;
+    overflow: hidden; /* Penting untuk animasi typing */
+}
+
+/* CONTAINER ANIMASI TYPED TEXT (JUDUL H2) */
+.animate-text-container {
+    display: inline-block;
+    white-space: nowrap; 
+    overflow: hidden;
+    border-right: 3px solid #E0E0E0; 
+    max-width: 0; 
+}
+
+/* MENGAKTIFKAN ANIMASI TYPING KETIKA TERLIHAT */
+.credits-section.scroll-reveal.visible .animate-text-container {
+    /* Animasi 1: Typing (3s), Animasi 2: Blink (Kursor) */
+    animation: 
+        typing 3s steps(23, end) forwards,
+        blink-caret 0.75s step-end infinite;
+    animation-delay: 0.5s; /* Mulai setelah 0.5 detik */
+    max-width: 100%;
+}
+
+@keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+}
+
+@keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: #E0E0E0; }
+}
+
+/* ANIMASI SLIDE IN BERURUTAN PADA DAFTAR ITEM */
+.credits-list {
+    margin-top: 20px;
+    max-width: 500px;
+    width: 100%;
+    text-align: left;
+    opacity: 0; 
+    transform: translateY(20px);
+}
+
+/* Setelah teks judul selesai diketik, tampilkan list secara keseluruhan */
+.credits-section.scroll-reveal.visible .credits-list {
+    /* Tunda 3.5s agar dimulai setelah efek typing selesai (3s + 0.5s delay) */
+    animation: fadeInUp 1s ease-out 3.5s forwards; 
+}
+
+.credit-item {
+    opacity: 0; /* Mulai tersembunyi */
+    transform: translateY(10px);
+}
+
+/* Mengatur delay muncul secara berurutan pada setiap item list (Staggered Animation) */
+.credits-section.scroll-reveal.visible .credit-item {
+    animation: fadeInUp 0.7s ease-out forwards;
+}
+
+.credits-section.scroll-reveal.visible .credit-item:nth-child(1) { animation-delay: 3.8s; }
+.credits-section.scroll-reveal.visible .credit-item:nth-child(2) { animation-delay: 4.1s; }
+.credits-section.scroll-reveal.visible .credit-item:nth-child(3) { animation-delay: 4.4s; }
+.credits-section.scroll-reveal.visible .credit-item:nth-child(4) { animation-delay: 4.7s; }
+.credits-section.scroll-reveal.visible .credit-item:nth-child(5) { animation-delay: 5.0s; }
+.credits-section.scroll-reveal.visible .credit-item:nth-child(6) { animation-delay: 5.3s; }
+
+
+/* Keyframes untuk efek muncul dari bawah (Fade In Up) */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Gaya Konten List */
+.credits-list ul {
+    list-style: none;
+    padding: 0;
+}
+
+.credits-list li {
+    font-size: 1.1em;
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.credits-list li:last-child {
+    border-bottom: none;
+}
+
+
+/* Gaya Footer */
+footer {
+    background-color: #000;
+    text-align: center;
+    padding: 20px 5%;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 0.9em;
+    color: #ADADAD;
+}
+
+
+/* Scroll Reveal Animation Classes (Default) */
 .scroll-reveal {
     opacity: 0;
     transform: translateY(50px);
@@ -310,6 +440,7 @@ a {
 }
 
 
+/* --- 5. RESPONSIVITAS --- */
 @media (max-width: 768px) {
     .main-header {
         flex-direction: column;
@@ -326,8 +457,7 @@ a {
     .nav-button {
         flex: 1;
         text-align: center;
-        padding: 4px 6px;
-		gap : 2px;
+        padding: 8px 10px;
     }
     
     .hero-section {
