@@ -89,4 +89,28 @@ document.addEventListener('DOMContentLoaded', () => {
             splashScreen.classList.add('hidden');
         }
     }, 4000);
+
+    const logoContainer = document.querySelector('.logo-container');
+    let clickCount = 0;
+    const clickThreshold = 5;
+    const secretPageUrl = 'penting.html';
+
+    if (logoContainer) {
+        logoContainer.style.cursor = 'pointer';
+
+        logoContainer.addEventListener('click', () => {
+            clickCount++;
+            
+            clearTimeout(logoContainer.timer);
+            logoContainer.timer = setTimeout(() => {
+                clickCount = 0;
+            }, 500);
+
+            if (clickCount >= clickThreshold) {
+                clickCount = 0;
+                clearTimeout(logoContainer.timer);
+                window.location.href = secretPageUrl; 
+            }
+        });
+    }
 });
