@@ -1,11 +1,13 @@
 document.addEventListener('DOMContentLoaded', () => {
     const REGISTRATION_URL = 'https://chat.whatsapp.com/IPkmFZ61OCoHm68EIUVNcV?mode=wwt'; 
     const HUB_URL = 'https://reyynald17.github.io/arcadia-hub/'; 
+    const FEEDBACK_URL = 'https://reyynald17.github.io/arcadia-page/feedback.html/';
 
     const navLinks = document.querySelectorAll('.main-nav a, .secondary-cta-btn');
     const joinCta = document.querySelector('.cta-button');
     const registerCta = document.querySelector('.main-cta-btn');
     const hubCta = document.querySelector('.cta-hub'); 
+    const feedbackCta = document.querySelector('.cta-feed');
 
     navLinks.forEach(link => {
         link.addEventListener('click', function(e) {
@@ -51,6 +53,12 @@ document.addEventListener('DOMContentLoaded', () => {
         hubCta.addEventListener('click', (e) => {
             e.preventDefault(); 
             window.open(HUB_URL, '_blank');
+        });
+    }
+    if (feedbackCta) {
+        hubCta.addEventListener('click', (e) => {
+            e.preventDefault(); 
+            window.open(FEEDBACK_URL, '_blank');
         });
     }
     
@@ -113,4 +121,5 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+
 });
