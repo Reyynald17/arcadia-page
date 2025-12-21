@@ -13,13 +13,7 @@
             --font-headline: 'Poppins', sans-serif;
             --font-body: 'Montserrat', sans-serif;
         }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             background-color: var(--color-background);
             color: var(--color-text-light);
@@ -27,39 +21,6 @@
             line-height: 1.6;
             overflow-x: hidden;
         }
-
-        #splash-screen {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: var(--color-background);
-            z-index: 9999;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            transition: opacity 0.5s ease-out, visibility 0.5s;
-        }
-
-        #splash-screen.hidden {
-            opacity: 0;
-            visibility: hidden;
-        }
-
-        .loading-circle {
-            width: 40px;
-            height: 40px;
-            border: 3px solid rgba(255, 255, 255, 0.1);
-            border-top-color: var(--color-cta-main);
-            border-radius: 50%;
-            animation: spin 0.8s linear infinite;
-        }
-
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-
         .main-header {
             display: flex;
             justify-content: space-between;
@@ -75,52 +36,12 @@
             backdrop-filter: blur(15px);
         }
 
-        .logo-container {
-            height: 40px;
-            display: flex;
-            align-items: center;
-        }
-
-        .logo {
-            height: 100%;
-            width: auto;
-        }
-
-        .main-nav {
-            display: flex;
-            gap: 20px;
-        }
-
-        .nav-button {
-            color: var(--color-text-light);
-            text-decoration: none;
-            font-family: var(--font-headline);
-            font-size: 0.85em;
-            text-transform: uppercase;
-            transition: 0.3s;
-        }
-
-        .nav-button.active {
-            color: var(--color-cta-main);
-        }
-
         .content-section {
             padding: 120px 20px 60px;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .headline-title {
-            font-family: var(--font-headline);
-            font-size: clamp(1.5rem, 8vw, 2.5rem);
-            text-align: center;
-            margin-bottom: 40px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
         }
 
         .feedback-card {
@@ -129,6 +50,16 @@
             background: #0a0a0a;
             border: 1px solid rgba(255, 255, 255, 0.05);
             padding: 40px 30px;
+            margin-top: 20px;
+        }
+
+        .headline-title {
+            font-family: var(--font-headline);
+            font-size: clamp(1.5rem, 8vw, 2.5rem);
+            text-align: center;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
         }
 
         .form-group {
@@ -184,67 +115,44 @@
             margin-top: 20px;
             font-size: 0.85em;
             text-align: center;
-            text-transform: uppercase;
-            letter-spacing: 1px;
         }
-
         @media (max-width: 768px) {
-            .main-nav {
-                position: fixed;
-                bottom: 0;
-                left: 0;
-                width: 100%;
-                background: #000;
-                justify-content: space-around;
-                padding: 20px 0;
-                border-top: 1px solid rgba(255, 255, 255, 0.1);
-                gap: 0;
-            }
-            .content-section { padding-top: 90px; }
             .feedback-card { padding: 30px 20px; border: none; }
+            .main-nav { display: none; } /* Mobile uses bottom nav in your style */
         }
     </style>
 </head>
 <body>
 
-    <div id="splash-screen">
-        <div class="loading-circle"></div>
-    </div>
-
     <header class="main-header">
-        <div class="logo-container">
-            <a href="index.html">
-                <img src="logo.png" alt="Arcadia" class="logo">
-            </a>
-        </div>
+        <div class="logo-container"><a href="index.html"><img src="logo.png" alt="Arcadia" style="height:40px;"></a></div>
         <nav class="main-nav">
             <a href="index.html" class="nav-button">Home</a>
-            <a href="team.html" class="nav-button">Devs</a>
-            <a href="index.html#lore" class="nav-button">Lore</a>
             <a href="#" class="nav-button active">Feedback</a>
         </nav>
     </header>
 
     <main class="content-section">
         <h2 class="headline-title">Feedback System</h2>
-        
+        <p style="color: #666; font-size: 0.9em; margin-bottom: 30px;">Laporkan anomali atau berikan saran teknis.</p>
+
         <div class="feedback-card">
-            <form id="feedbackForm">
+            <form id="feedbackForm" class="feedback-form">
                 <div class="form-group">
                     <label>Nama / Alias</label>
-                    <input type="text" id="userName" class="form-control" required>
+                    <input type="text" id="userName" class="form-control" required placeholder="Unit-01">
                 </div>
                 <div class="form-group">
-                    <label>Kategori</label>
+                    <label>Kategori Masukan</label>
                     <select id="category" class="form-control" required>
                         <option value="Bug">Bug Report</option>
-                        <option value="Saran">Saran</option>
-                        <option value="Lainnya">Lainnya</option>
+                        <option value="Suggestion">Saran</option>
+                        <option value="Other">Lainnya</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label>Pesan</label>
-                    <textarea id="message" class="form-control" rows="5" required></textarea>
+                    <textarea id="message" class="form-control" rows="5" required placeholder="Deskripsikan masukan Anda..."></textarea>
                 </div>
                 <button type="submit" id="submitBtn" class="submit-btn">Kirim Data</button>
             </form>
@@ -252,7 +160,7 @@
         </div>
     </main>
 
-    <script>
+<script>
         const BIN_ID = '6948104743b1c97be9fce750'; 
         const API_KEY = '$2a$10$M55GAQGmXXRYA96RdrzW.uAiqpU.X2JqBMvXOyp0dDkE.4zO/0dfa';
 
