@@ -1,4 +1,3 @@
-/* --- 1. RESET DAN FONT GLOBAL --- */
 * {
     margin: 0;
     padding: 0;
@@ -26,7 +25,6 @@ a {
     color: inherit;
 }
 
-/* --- SPLASH SCREEN STYLES --- */
 #splash-screen {
     position: fixed;
     top: 0;
@@ -80,7 +78,6 @@ a {
 }
 
 
-/* --- 2. HEADER DAN NAVIGASI --- */
 .main-header {
     display: flex;
     justify-content: space-between;
@@ -271,7 +268,6 @@ a {
     object-fit: cover;
 }
 
-/* --- 4. CONTENT SECTIONS (LORE, PETA, CREDITS) --- */
 .content-section {
     min-height: 80vh;
     padding: 100px 5%;
@@ -292,7 +288,6 @@ a {
     background-color: #0A0A0A;
 }
 
-/* Gaya Bagian Peta */
 .map-section {
     background-color: #151515;
     padding-bottom: 100px; 
@@ -312,19 +307,13 @@ a {
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
 }
 
-/* -------------------------------------- */
-/* --- GAYA DAN ANIMASI KOMPLEKS CREDITS --- */
-/* -------------------------------------- */
-
-/* Gaya Dasar Credits */
 .credits-section {
     min-height: 40vh;
     background-color: #0A0A0A;
     padding-bottom: 50px;
-    overflow: hidden; /* Penting untuk animasi typing */
+    overflow: hidden;
 }
 
-/* CONTAINER ANIMASI TYPED TEXT (JUDUL H2) */
 .animate-text-container {
     display: inline-block;
     white-space: nowrap; 
@@ -333,13 +322,12 @@ a {
     max-width: 0; 
 }
 
-/* MENGAKTIFKAN ANIMASI TYPING KETIKA TERLIHAT */
 .credits-section.scroll-reveal.visible .animate-text-container {
-    /* Animasi 1: Typing (3s), Animasi 2: Blink (Kursor) */
+/
     animation: 
         typing 3s steps(23, end) forwards,
         blink-caret 0.75s step-end infinite;
-    animation-delay: 0.5s; /* Mulai setelah 0.5 detik */
+    animation-delay: 0.5s; 
     max-width: 100%;
 }
 
@@ -353,7 +341,6 @@ a {
     50% { border-color: #E0E0E0; }
 }
 
-/* ANIMASI SLIDE IN BERURUTAN PADA DAFTAR ITEM */
 .credits-list {
     margin-top: 20px;
     max-width: 500px;
@@ -363,18 +350,15 @@ a {
     transform: translateY(20px);
 }
 
-/* Setelah teks judul selesai diketik, tampilkan list secara keseluruhan */
 .credits-section.scroll-reveal.visible .credits-list {
-    /* Tunda 3.5s agar dimulai setelah efek typing selesai (3s + 0.5s delay) */
     animation: fadeInUp 1s ease-out 3.5s forwards; 
 }
 
 .credit-item {
-    opacity: 0; /* Mulai tersembunyi */
+    opacity: 0;
     transform: translateY(10px);
 }
 
-/* Mengatur delay muncul secara berurutan pada setiap item list (Staggered Animation) */
 .credits-section.scroll-reveal.visible .credit-item {
     animation: fadeInUp 0.7s ease-out forwards;
 }
@@ -386,8 +370,6 @@ a {
 .credits-section.scroll-reveal.visible .credit-item:nth-child(5) { animation-delay: 5.0s; }
 .credits-section.scroll-reveal.visible .credit-item:nth-child(6) { animation-delay: 5.3s; }
 
-
-/* Keyframes untuk efek muncul dari bawah (Fade In Up) */
 @keyframes fadeInUp {
     from {
         opacity: 0;
@@ -399,7 +381,6 @@ a {
     }
 }
 
-/* Gaya Konten List */
 .credits-list ul {
     list-style: none;
     padding: 0;
@@ -415,8 +396,6 @@ a {
     border-bottom: none;
 }
 
-
-/* Gaya Footer */
 footer {
     background-color: #000;
     text-align: center;
@@ -426,8 +405,6 @@ footer {
     color: #ADADAD;
 }
 
-
-/* Scroll Reveal Animation Classes (Default) */
 .scroll-reveal {
     opacity: 0;
     transform: translateY(50px);
@@ -439,8 +416,6 @@ footer {
     transform: translateY(0);
 }
 
-
-/* --- 5. RESPONSIVITAS --- */
 @media (max-width: 768px) {
     .main-header {
         flex-direction: column;
